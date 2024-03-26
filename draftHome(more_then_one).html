@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+	
+	<title> Draft  Main Menu </title>
+	
+	
+	
+	<style>
+	
+	.title{
+		font-family: Georgia;
+		font-size:70px;
+		color:black;
+		background-color:EECB1F;
+		font-wieght:bold;
+		text-shadow: 2px 2px 5px orange;
+		
+			
+		}
+	
+	.text1
+	{ 
+		font-family: Georgia;
+		font-size:50px;
+		color:black;
+		background-color:EECB1F;
+		font-wieght:bold;
+		text-shadow: 2px 2px 5px orange;
+	
+	
+	
+	
+	}
+	.text2
+	{ 
+		font-family: Georgia;
+		font-size:25px;
+		color:black;
+		background-color:EECB1F;
+		font-wieght:bold;
+		text-shadow: 2px 2px 5px orange;
+	
+	
+	
+	
+	}
+	
+	
+	
+	
+	button 
+	{
+			width: 20%;
+			padding: 20px 100px;
+			color: yellow;font-size: 24px;
+			font-weight: bold;
+			border: none;
+			border-radius: 50px;
+			background-color:red;
+			}
+	button:hover {
+			background-color: white;
+		}
+	.ButtonN {
+			border-radius: initial;
+			width: initial;
+			padding: initial;
+			background-color: #C5CDCC;
+			color: initial;
+			border: initial;
+			padding: initial;
+			font-size: initial;
+			cursor: initial;
+			text-decoration: initial;
+			display: inline-block;
+		}
+	.button1 {
+			background-color: #21AB36;
+			color:black;
+		}
+
+	.button2 {
+			background-color: #b02525;
+		} 
+	.button3{
+			background-color: #B03F3E;
+			color:black;
+		}
+	.button4{
+			background-color: grey;
+			color:black;
+		}
+	table {
+            margin: 0 auto; /* Center the table */
+        }
+
+     td {
+            padding: 50px; /* Add some padding for spacing, change to seperate more */
+        }
+		
+	p{
+		text-align: center;
+	
+	}
+
+        
+	</style>
+	
+	    <script>
+        function calculateTotal() {
+            let total = 0;
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+            checkboxes.forEach(checkbox => {
+                const quantity = parseInt(checkbox.dataset.quantity || 1); // Default quantity to 1 if not set
+                total += parseInt(checkbox.value) * quantity;
+            });
+            alert('Total price: $' + total);
+        }
+
+        function toggleOptions(checkboxId) {
+            var checkbox = document.getElementById(checkboxId);
+            var options = document.getElementById(checkboxId + "_options");
+
+            if (checkbox.checked) {
+                options.style.display = "block";
+            } else {
+                options.style.display = "none";
+            }
+        }
+
+        function updateQuantity(checkboxId, action) {
+            const checkbox = document.getElementById(checkboxId);
+            let quantity = parseInt(checkbox.dataset.quantity || 1); // Default quantity to 1 if not set
+            if (action === 'add') {
+                quantity++;
+            } else if (action === 'subtract' && quantity > 1) {
+                quantity--;
+            }
+            checkbox.dataset.quantity = quantity;
+            document.getElementById(checkboxId + '-quantity').textContent = quantity;
+        }
+    </script>
+	
+	
+	</head>
+	
+	<body bgcolor="EECB1F" >
+	
+	<center>
+	<div id="title" class="title">
+	<img src="PizzaLogo.jpg" width="400" height="400">
+	<h2> <img src="Title1.jpg" width="300" height="200"> Freddy's Pizzeria <img src="Title2.jpg" width="300" height="200"></h2>
+	</div>
+	<div class="text1"
+	<p> The home of the famous Freddy Statue. </P>
+	</div>
+	
+	
+	<button class="button1" onclick="location.href='Salad.html'"> Salad Menu </button>
+	<button class="button2" onclick="location.href='Pasta.html'"> Pasta Menu </button>
+	<br><br>
+	<div class="text2"
+	<p> These will go the Salad and Pasta menu, but our selection of pizza is right below. </P>
+	</div>
+	
+	
+	<div class="text1"
+	<p> <br><br>Our selection of personal <b>Pizza:</b> <br>Small-Given, Medium+$2, Large+$5</P>
+	</div>
+	
+	
+	
+	</center>
+	
+	<!--get pizzas, maybe lab3 to tell about pizza-->
+	 <center>
+        <table>
+			<tr>
+            <td>
+                <a href="pepperoni.jpg"><img src="pepperoni.jpg" width="250" height="250"></a> <br>
+				
+                <p> Pepperoni Pizza($8) 
+                <input type="checkbox" name="pizza1" id="pizza1" value="8" onclick="toggleOptions('pizza1') " /> 
+				<button class="ButtonN" onclick="updateQuantity('pizza1', 'add')">`+`</button> 
+				<button class="ButtonN"onclick="updateQuantity('pizza1', 'subtract')">`-`</button>
+				<span id="pizza1-quantity">0</span> </p>
+				
+            <div id="pizza1_options" style="display: none;">
+                    <label><input type="checkbox" name="size_small" value="0" onclick="updateQuantity('pizza1', 1)"> Small</label>
+                    <label><input type="checkbox" name="size_medium" value="2" onclick="updateQuantity('pizza1', 1)"> Medium</label>
+                    <label><input type="checkbox" name="size_large" value="5" onclick="updateQuantity('pizza1', 1)"> Large</label>
+             </div>
+            </td>
+			
+			
+			
+            <td>
+                <a href="cheese.jpg"><img src="cheese.jpg" width="250" height="250"></a>
+                <p> Cheese Pizza($6) 
+                <input type="checkbox" name="pizza2" id="pizza2" value="6" onclick="toggleOptions('pizza2')" /> 
+				<button class="ButtonN" onclick="updateQuantity('pizza2', 'add')">`+`</button> 
+				<button class="ButtonN"onclick="updateQuantity('pizza2', 'subtract')">`-`</button>
+				<span id="pizza2-quantity">0</span> </p>
+				
+                <div id="pizza2_options" style="display: none;">
+                    <label><input type="checkbox" name="size_small" value="0" onclick="updateQuantity('pizza2', 1)"> Small</label>
+                    <label><input type="checkbox" name="size_medium" value="2" onclick="updateQuantity('pizza2', 1)"> Medium</label>
+                    <label><input type="checkbox" name="size_large" value="5" onclick="updateQuantity('pizza2', 1)"> Large</label>
+                </div>
+            </td>
+            <td>
+                <a href="sausage.jpg"><img src="sausage.jpg" width="250" height="250"></a>
+                <p> Sausage Pizza($8) 
+                <input type="checkbox" name="pizza3" id="pizza3" value="8" onclick="toggleOptions('pizza3')" /> 
+				<button class="ButtonN" onclick="updateQuantity('pizza3', 'add')">`+`</button> 
+				<button class="ButtonN"onclick="updateQuantity('pizza3', 'subtract')">`-`</button>
+				<span id="pizza3-quantity">0</span> </p>
+				
+                <div id="pizza3_options" style="display: none;">
+                    <label><input type="checkbox" name="size_small" value="0" onclick="updateQuantity('pizza3', 1)"> Small</label>
+                    <label><input type="checkbox" name="size_medium" value="2" onclick="updateQuantity('pizza3', 1)"> Medium</label>
+                    <label><input type="checkbox" name="size_large" value="5" onclick="updateQuantity('pizza3', 1)"> Large</label>
+                </div>
+            </td>
+			</tr>
+			
+			
+			
+			
+			
+			
+            <tr>
+                <td><a href="PizzaLogo.jpg"><img src="PizzaLogo.jpg" width="250" height="250"></a></td>
+                <td><a href="PizzaLogo.jpg"><img src="PizzaLogo.jpg" width="250" height="250"></a></td>
+                <td><a href="PizzaLogo.jpg"><img src="PizzaLogo.jpg" width="250" height="250"></a></td>
+            </tr>
+            <tr>
+                <td><a href="PizzaLogo.jpg"><img src="PizzaLogo.jpg" width="250" height="250"></a></td>
+                <td><a href="PizzaLogo.jpg"><img src="PizzaLogo.jpg" width="250" height="250"></a></td>
+                <td><a href="PizzaLogo.jpg"><img src="PizzaLogo.jpg" width="250" height="250"></a></td>
+            </tr>
+			<tr>
+                <td><a href="PizzaLogo.jpg"><img src="PizzaLogo.jpg" width="250" height="250"></a></td>
+                <td><a href="PizzaLogo.jpg"><img src="PizzaLogo.jpg" width="250" height="250"></a></td>
+                <td><a href="PizzaLogo.jpg"><img src="PizzaLogo.jpg" width="250" height="250"></a></td>
+            </tr>
+        </table>
+    </center>

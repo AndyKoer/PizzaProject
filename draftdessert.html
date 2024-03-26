@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dessert Order</title>
+<script>
+function calculateTotal() {
+    let total = 0;
+    const checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+    checkboxes.forEach(checkbox => {
+        const quantity = parseInt(checkbox.dataset.quantity || 1); // Default quantity to 1 if not set
+        total += parseInt(checkbox.value) * quantity;
+    });
+    alert('Total price: $' + total);
+}
+
+function updateQuantity(checkboxId, action) {
+    const checkbox = document.getElementById(checkboxId);
+    let quantity = parseInt(checkbox.dataset.quantity || 1); // Default quantity to 1 if not set
+    if (action === 'add') {
+        quantity++;
+    } else if (action === 'subtract' && quantity > 1) {
+        quantity--;
+    }
+    checkbox.dataset.quantity = quantity;
+    document.getElementById(checkboxId + '-quantity').textContent = quantity;
+}
+</script>
+</head>
+<body>
+<table>
+<tr>
+    <td><img src="giant-cookie.jpg" width="250" height="250"> <br>
+        <p> Mighty Freddy Cookie ($8)
+            <input type="checkbox" name="pizza100" id="pizza100" value="8" onchange="calculateTotal()" />
+            <button onclick="updateQuantity('pizza100', 'add')">+</button>
+            <button onclick="updateQuantity('pizza100', 'subtract')">-</button>
+            <span id="pizza100-quantity">0</span>
+        </p></td>
+    <td><img src="cake.jpg" width="250" height="250"> <br>
+        <p> Freddy Gooey Cakey ($14) 
+            <input type="checkbox" name="pizza101" id="pizza101" value="14" onchange="calculateTotal()" />
+            <button onclick="updateQuantity('pizza101', 'add')">+</button>
+            <button onclick="updateQuantity('pizza101', 'subtract')">-</button>
+            <span id="pizza101-quantity">0</span>
+        </p></td>
+</tr>
+</table>
+</body>
+</html>
