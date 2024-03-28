@@ -1,26 +1,36 @@
 <!DOCTYPE html>
 <html>
-	<head> 
-		<title>Salads Menu: </title>
-		
-		
-		<script>
+<head> 
+    <title>Salads Menu: </title>
+    <script>
 
-		function calculateTotal() {
-            let total = 0;
-            const checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
-            checkboxes.forEach(checkbox => {
-                total += parseInt(checkbox.value);
-            });
-            alert('Total price: $' + total);
+    function increaseQuantity(elementId) {
+        let inputElement = document.getElementById(elementId);
+        inputElement.value = parseInt(inputElement.value) + 1;
+    }
+
+    function decreaseQuantity(elementId) {
+        let inputElement = document.getElementById(elementId);
+        if (parseInt(inputElement.value) > 1) {
+            inputElement.value = parseInt(inputElement.value) - 1;
         }
-		
+    }
 
-
-
-		</script>
-		
-		<style>
+    function calculateTotal() {
+        let total = 0;
+        const saladInputs = document.querySelectorAll('input[type="number"]');
+        saladInputs.forEach(input => {
+            const quantity = parseInt(input.value);
+            const checkbox = document.getElementById(input.getAttribute('data-checkbox'));
+            if (checkbox.checked) {
+                total += parseInt(checkbox.value) * quantity;
+            }
+        });
+        alert('Total price of Salad(s): $' + total);
+    }
+    </script>
+    
+    <style>
 		.title{
 			font-family: Georgia;
 			font-size:70px;
@@ -80,77 +90,73 @@
 		</style>
 	</head>
 
-
 <body bgcolor="#03fcc6">
 
-<font class=font1>
-<a href = "Home.html" class=linktext>  Back to Main Menu </a>
+<font class="font1">
+    <a href="Home.html" class="linktext">Back to Main Menu</a>
 </font>
 
-<h1 class=title align=center > <br> The Salad Menu:  <br><br> </h1>
+<h1 class="title" align="center"> 
+    <br> The Salad Menu: <br><br> 
+</h1>
 
-<table class=font1>
+<table class="font1">
 <tr>
-	<td>
-	<div class="image-container">
-	<img src="caesar.jpg" alt="Product1" width="550" height="500">
-	
-	<label for="salad1" class="salad-1">The Caesar Salad ($8): A classic salad composed of <br> romaine lettuce, croutons, grated parmesan cheese, and <br> a some caesar dressing.</label>
-	
-	<input type="checkbox" name="salad1" id="salad1" value="8" />  <br><br>
-	
-	</div>
-	</td>
+    <td>
+        <div class="image-container">
+            <img src="caesar.jpg" alt="Product1" width="550" height="500">
+            <label for="salad1" class="salad-1">The Caesar Salad ($8): A classic salad composed of <br> romaine lettuce, croutons, grated parmesan cheese, and <br> a some caesar dressing.</label>
+            <input type="checkbox" name="salad1" id="salad1" value="8"> <br>
+            <button onclick="decreaseQuantity('quantity1')">-</button>
+            <input type="number" id="quantity1" value="1" data-checkbox="salad1">
+            <button onclick="increaseQuantity('quantity1')">+</button>
+            <br><br>
+        </div>
+    </td>
 </tr>
-	
-	
 <tr>
-	<td>
-	<div class="image-container">
-	<img src="chicken.jpg" alt="Product2" width="550" height="500">
-	
-	<label for="salad2" class="salad-2">The Chicken Salad ($15): A salad featuring cooked chicken mixed <br> with mayonnaise, celery, and various seasonings,and <br> served chilled on a bed of lettuce.</label>
-	
-	<input type="checkbox" name="salad2" id="salad2" value="15" />  <br><br>
-	
-	</div>
-	</td>
+    <td>
+        <div class="image-container">
+            <img src="chicken.jpg" alt="Product2" width="550" height="500">
+            <label for="salad2" class="salad-2">The Chicken Salad ($15): A salad featuring cooked chicken mixed <br> with mayonnaise, celery, and various seasonings,and <br> served chilled on a bed of lettuce.</label>
+            <input type="checkbox" name="salad2" id="salad2" value="15"> <br>
+            <button onclick="decreaseQuantity('quantity2')">-</button>
+            <input type="number" id="quantity2" value="1" data-checkbox="salad2">
+            <button onclick="increaseQuantity('quantity2')">+</button>
+            <br><br>
+        </div>
+    </td>
 </tr>
-
 <tr>
-	<td>
-	<div class="image-container">
-	<img src="waldorf.jpg" alt="Product3" width="550" height="500">
-	
-	<label for="salad3" class="salad-3">The Waldorf Salad ($12): A refreshing salad consisting <br> of diced apples, celery,and walnuts dressed <br> in a mayonnaise-based dressing.</label>
-	
-	<input type="checkbox" name="salad3" id="salad3" value="12" /> <br><br>
-	
-	</div>
-	</td>
+    <td>
+        <div class="image-container">
+            <img src="waldorf.jpg" alt="Product3" width="550" height="500">
+            <label for="salad3" class="salad-3">The Waldorf Salad ($12): A refreshing salad consisting <br> of diced apples, celery,and walnuts dressed <br> in a mayonnaise-based dressing.</label>
+            <input type="checkbox" name="salad3" id="salad3" value="12"> <br>
+            <button onclick="decreaseQuantity('quantity3')">-</button>
+            <input type="number" id="quantity3" value="1" data-checkbox="salad3">
+            <button onclick="increaseQuantity('quantity3')">+</button>
+            <br><br>
+        </div>
+    </td>
 </tr>
-
-
 <tr>
-	<td>
-	<div class="image-container">
-	<img src="potato.jpg" alt="Product4" width="550" height="500">
-	
-	<label for="salad4" class="salad-4">The Potato Salad ($10): A salad made with boiled <br> potatoes, dressed with some mayonnaise, and mixed <br> with ingredients like onions, celery, and herbs.</label>
-	
-	<input type="checkbox" name="salad4" id="salad4" value="10" />  <br><br>
-	
-	</div>
-	</td>
-</tr>	
-	
-	
-	
-	
-</table>	
+    <td>
+        <div class="image-container">
+            <img src="potato.jpg" alt="Product4" width="550" height="500">
+            <label for="salad4" class="salad-4">The Potato Salad ($10): A salad made with boiled <br> potatoes, dressed with some mayonnaise, and mixed <br> with ingredients like onions, celery, and herbs.</label>
+            <input type="checkbox" name="salad4" id="salad4" value="10"> <br>
+            <button onclick="decreaseQuantity('quantity4')">-</button>
+            <input type="number" id="quantity4" value="1" data-checkbox="salad4">
+            <button onclick="increaseQuantity('quantity4')">+</button>
+            <br><br>
+        </div>
+    </td>
+</tr>
+</table>
 
 <button onclick="calculateTotal()">Calculate Total Price</button> <!--need to send to cart-->
-	
+
 </body>
 </html>
 
