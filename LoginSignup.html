@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+	<title> My Login & Signup Forms </title>
+<style>
+
+	table {
+		border: none;
+		margin-left: 20px;
+		margin-right: 30px;
+		box-shadow: 5px 5px 30px #454545;
+		bgcolor:#c5c5c5;
+	}
+
+	button {
+		
+		padding: 20px 40px;
+		background-color:#a5a5a5;
+		color: blue;
+		font-size: 24px;
+		font-weight: bold;
+		border: none;
+		border-radius: 5px;
+	}
+	
+	button:hover {
+		background-color: white;
+	}
+
+	.myText
+	{
+		font-family:Georgia;
+		font-size:50px;
+		text-decoration:none;
+		font-style: italic;
+		font-weight:bold;
+		color:blue;
+	}
+	.login-div{
+		font-family:Arial;
+		font-size:18px;
+		font-weight:bold;
+		margin: 20px;
+		position:absolute;
+		left:550px; 
+		top:330px;  
+
+	}
+	.sign-div{
+		font-family:Arial;
+		font-size:18px;
+		font-weight:bold;
+		margin: 20px;
+		position:absolute;
+		left:550px; 
+		top:330px;  
+
+	}
+	.font1{
+		color:white;
+		font-family: Georgia;
+		font-wieght:bold;
+		font-size:40px;
+	}
+
+</style>
+
+<script>
+function mylogin()
+{
+	
+	document.getElementById("loginForm").style.display="block";
+	document.getElementById("signupForm").style.display="none";
+	
+}
+function mysignup()
+{
+	document.getElementById("loginForm").style.display="none";
+	document.getElementById("signupForm").style.display="block";
+
+}
+function myreset()
+{
+	document.getElementById("Luserid").value = "";
+	document.getElementById("Lpwd").value = "";
+	document.getElementById("Suserid").value = "";
+	document.getElementById("Spwd").value = "";
+}
+
+
+</script>
+
+</head>
+<body bgcolor="EECB1F" >
+
+<font class=font1>
+<a href = "Home.html" class=linktext>  Back to Main Menu </a>
+</font>
+
+	<center>
+		<p class="myText"> <img src="PizzaLogo.jpg" width="120" height="120"> &nbsp;&nbsp;&nbsp;Login or Signup Before Checking Out&nbsp;&nbsp;&nbsp; <img src="PizzaLogo.jpg" width="120" height="120"></p>
+		<button onclick="mylogin()"> Login Form </button></div>
+		<button onclick="mysignup()"> Signup Form </button></div>
+	</center>
+
+	<div id="loginForm" class="login-div" style="display:none"> 
+		<h1> Login <h1>
+		<table border=2 width=50%>
+			<tr><td align="right"> Username: </td><td> <input type="text" name="userid" id="Luserid"/></td></tr>
+			<tr><td align="right"> Password: </td><td> <input type="password" name="pwd" id="Lpwd"/></td></tr>
+			<tr><td colspan=2 align="center"> <button>Login</button></td></tr>
+			<tr><td colspan=2 align="center"> <input onclick="myreset()" type="submit" value="Reset"/></td></tr>
+		</table>
+	</div>
+	
+	<div id="signupForm" class="sign-div" style="display:none"> 
+		<h1> Signup <h1>
+		<table border=2 width=50%>
+			<tr><td align="right"> Username: </td><td> <input type="text" name="userid" id="Suserid"/></td></tr>
+			<tr><td align="right"> Password: </td><td> <input type="password" name="pwd" id="Spwd"/></td></tr>
+			<tr><td colspan=2 align="center"> <button> Signup </button></td></tr>
+			<tr><td colspan=2 align="center"> <input onclick="myreset()" type="submit" value="Reset"/></td></tr>
+		</table>
+
+	</div>
+
+</body>
+</html>
