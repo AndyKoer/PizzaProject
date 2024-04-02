@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Your Own Pizza</title>
+    <script>
+        let quantity = 1; // Initialize quantity to 1
+
+        function increaseQuantity() {
+            quantity++;
+            document.getElementById("quantityDisplay").innerText = quantity;
+        }
+
+        function decreaseQuantity() {
+            if (quantity > 1) {
+                quantity--;
+                document.getElementById("quantityDisplay").innerText = quantity;
+            }
+        }
+
+        function calculateTotal() {
+            let total = 0;
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+            checkboxes.forEach(checkbox => {
+                total += parseInt(checkbox.value) * quantity; // Multiply by my quantity
+            });
+            alert('Total price for ' + quantity + ' pizza(s): $' + total);
+        }
+    </script>
+    <style>
+		.title{
+			font-family: Georgia;
+			font-size:70px;
+			color:black;
+			background-color:#DE670F;
+			font-wieght:bold;
+			text-shadow: 2px 2px 5px orange;
+		}
+		.font1{
+			color:white;
+			font-family: Georgia;
+			font-wieght:bold;
+			font-size:20px;
+		
+		}
+		.font2{
+			color:white;
+			font-family: Georgia;
+			font-wieght:bold;
+			font-size:40px;
+		
+		}
+		p{
+		color:white;
+		font-family: Georgia;
+		font-wieght:bold;
+		text-align: center;
+		font-size:30px;
+	
+		}
+		table {
+            margin: 0 auto; 
+			border-color: #DE670F;
+        }
+		td {
+            padding: 45px; /* Add some padding for spacing, change to seperate more */
+        }
+		</style>
+		</head>
+<body bgcolor="B03F3E">
+    <font class="font2">
+        <a href="Home.php" class="linktext">Back to Main Menu</a>
+    </font>
+
+    <h1 class="title" align="center">
+        <br>Make Your Own Pizza:<br><br>
+    </h1>
+
+<p> <font class=font2> Choose <u>How Many:</u> <br> </font>
+<button onclick="decreaseQuantity()">-</button>
+        <span id="quantityDisplay">1</span>
+        <button onclick="increaseQuantity()">+</button>
+</p>	<br>	
+
+<p> <font class=font2>Choose <u>Size</u>: </font><br><br>
+
+<label><input type="checkbox" name="size_small" value="6"> Small($6) </label>
+<label><input type="checkbox" name="size_medium" value="8"> Medium($8) </label>
+<label><input type="checkbox" name="size_large" value="11"> Large($11)</label>
+
+</p>
+<br>
+<br>
+
+<p> <font class=font2>Choose <u>Toppings</u>: </font><br>
+
+<p> <font color=FDE602>Meats </font> ($2) <br> </p>
+<table class=font1 border=15px>
+	<tr>
+		<td> Sausage <input type="checkbox" name="meat" value="2"> </td>
+		<td> Peperoni <input type="checkbox" name="meat" value="2"> </td>
+		<td> Hamburger <input type="checkbox" name="meat" value="2"> </td>
+	</tr>
+	<tr>
+		<td> Bacon <input type="checkbox" name="meat" value="2"> </td>
+		<td> Meatballs <input type="checkbox" name="meat" value="2"> </td>
+		<td> Anchovies <input type="checkbox" name="meat" value="2"> </td>
+	</tr>
+	<tr>
+		<td> Salami <input type="checkbox" name="meat" value="2"> </td>
+		<td> Italian Sausage <input type="checkbox" name="meat" value="2"> </td>
+		<td> Chicken <input type="checkbox" name="meat" value="2"> </td>
+	</tr>
+</table>
+
+<p> <font color=4ED60C> Veggies </font>($1)<br> </p>
+<table class=font1 border=15px color=#4ED60C>
+	<tr>
+		<td> Olives <input type="checkbox" name="veg" value="1"> </td>
+		<td> Onions <input type="checkbox" name="veg" value="1"> </td>
+		<td> Peppers <input type="checkbox" name="veg" value="1"> </td>
+	</tr>
+	<tr>
+		<td> Tomatoes <input type="checkbox" name="veg" value="1"> </td>
+		<td> Garlic <input type="checkbox" name="veg" value="1"> </td>
+		<td> Spinach <input type="checkbox" name="veg" value="1"> </td>
+	</tr>
+	<tr>
+		<td> Mushrooms <input type="checkbox" name="veg" value="1"> </td>
+		<td> Basil <input type="checkbox" name="veg" value="1"> </td>
+		<td> Jalapenos <input type="checkbox" name="veg" value="1"> </td>
+	</tr>
+</table>
+	
+
+<button onclick="calculateTotal()">Calculate Total Price</button>
+
+</body>
+
+
+
+</html>
+
