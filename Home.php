@@ -399,10 +399,10 @@
 						</p></td>
 				<td><img src="cake.jpg" width="250" height="250"> <br>
 						<p> Freddy Gooey Cakey ($14) 
-						<input type="checkbox" name="pizza99" id="pizza99" value="14"  />
-						<button class="ButtonN" onclick="updateQuantity('pizza99', 'add')">`+`</button> 
-						<button class="ButtonN"onclick="updateQuantity('pizza99', 'subtract')">`-`</button>
-						<span id="pizza99-quantity">0</span> </p>
+						<input type="checkbox" name="pizza101" id="pizza101" value="14"  />
+						<button class="ButtonN" onclick="updateQuantity('pizza101', 'add')">`+`</button> 
+						<button class="ButtonN"onclick="updateQuantity('pizza101', 'subtract')">`-`</button>
+						<span id="pizza101-quantity">0</span> </p>
 			</tr>
 	
 	
@@ -413,14 +413,6 @@
 	</div>
 	<table>
 		<tr>
-			<td><img src="drinkPepper.jpg" width="150" height="150"></a> <br>
-                <p> Dr. Pepper
-                    <input type="checkbox" name="pizza101" id="pizza101" value="3" />
-                    <button class="ButtonN" onclick="updateQuantity('pizza101', 'add')">`+`</button> 
-					<button class="ButtonN"onclick="updateQuantity('pizza101', 'subtract')">`-`</button>
-					<span id="pizza101-quantity">0</span> </p>
-                </p>
-            </td>
             <td><img src="drinkPepper.jpg" width="150" height="150"> <br>
                     <p> Dr. Pepper
                     <input type="checkbox" name="pizza102" id="pizza102" value="3"  /> 
