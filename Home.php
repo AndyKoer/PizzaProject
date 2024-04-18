@@ -163,8 +163,8 @@
 	</div>
 	
 	
-	<button class="button1" onclick="location.href='Salad.php'"> Salad Menu </button>
-	<button class="button2" onclick="location.href='Pasta.php'"> Pasta Menu </button>
+	<button class="button1" onclick="location.href='Salad.html'"> Salad Menu </button>
+	<button class="button2" onclick="location.href='Pasta.html'"> Pasta Menu </button>
 	<br><br>
 	<div class="text2"
 	<p> These will go the Salad and Pasta menu, but our selection of pizza is right below. </P>
@@ -360,7 +360,7 @@
 					<button class="ButtonN"onclick="updateQuantity('pizza11', 'subtract')">`-`</button>
 					<span id="pizza11-quantity">0</span> </p>
 					
-				<div id="pizza9_options" style="display: none;">
+				<div id="pizza11_options" style="display: none;">
 						<label><input type="checkbox" name="size_small" value="0" onclick="updateQuantity('pizza11', 1)"> Small</label>
 						<label><input type="checkbox" name="size_medium" value="2" onclick="updateQuantity('pizza11', 1)"> Medium</label>
 						<label><input type="checkbox" name="size_large" value="5" onclick="updateQuantity('pizza11', 1)"> Large</label>
@@ -375,7 +375,7 @@
 					<button class="ButtonN"onclick="updateQuantity('pizza12', 'subtract')">`-`</button>
 					<span id="pizza12-quantity">0</span> </p>
 					
-				<div id="pizza9_options" style="display: none;">
+				<div id="pizza12_options" style="display: none;">
 						<label><input type="checkbox" name="size_small" value="0" onclick="updateQuantity('pizza12', 1)"> Small</label>
 						<label><input type="checkbox" name="size_medium" value="2" onclick="updateQuantity('pizza12', 1)"> Medium</label>
 						<label><input type="checkbox" name="size_large" value="5" onclick="updateQuantity('pizza12', 1)"> Large</label>
@@ -413,6 +413,7 @@
 	</div>
 	<table>
 		<tr>
+			
             <td><img src="drinkPepper.jpg" width="150" height="150"> <br>
                     <p> Dr. Pepper
                     <input type="checkbox" name="pizza102" id="pizza102" value="3"  /> 
@@ -458,13 +459,13 @@
 	<p> <br><br> You can also make you own pizza! </P>
 	</div>
 	
-	<button class="button3" onclick="location.href='MakeOwn.php'"> Make Your Own Pizza </button> <!--Finish-->
+	<button class="button3" onclick="location.href='MakeOwn.html'"> Make Your Own Pizza </button> <!--Finish-->
 	
 	<div class="text1"
 	<p> <br><br> When you have finished, you can check out here! </P>
 	</div>
 	
-	<button class="button4" onclick="location.href='LoginSignup.php'"> Checkout </button> <!--Finish-->
+	<button class="button4" onclick="location.href='LoginSignup.html'"> Checkout </button> <!--Finish-->
 	</center>
 	
 	<br>
