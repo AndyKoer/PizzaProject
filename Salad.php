@@ -118,7 +118,7 @@
 <tr>
     <td>
         <div class="image-container">
-            <img src="chicken.jpg" alt="Product2" width="550" height="500">
+            <img src="chickenss.jpg" alt="Product2" width="550" height="500">
             <label for="salad2" class="salad-2">The Chicken Salad ($15): A salad featuring cooked chicken mixed <br> with mayonnaise, celery, and various seasonings,and <br> served chilled on a bed of lettuce.</label>
             <input type="checkbox" name="salad2" id="salad2" value="15"> <br>
             <button onclick="decreaseQuantity('quantity2')">-</button>
