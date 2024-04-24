@@ -2,31 +2,45 @@
 <html>
 <head> 
     <title>Pasta Menu</title>
+	<?php include ("connect.php"); ?>
     <script>
-        function increaseQuantity(elementId) {
-            let inputElement = document.getElementById(elementId);
-            inputElement.value = parseInt(inputElement.value) + 1;
-        }
+            function calculateTotal() {
+        let total = 0;
+        const checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+        checkboxes.forEach(checkbox => {
+            const quantity = parseInt(checkbox.dataset.quantity || 1); // Default quantity to 1 if not set
+            total += parseInt(checkbox.value) * quantity;
+        });
+        alert('Total price: $' + total);
+    }
 
-        function decreaseQuantity(elementId) {
-            let inputElement = document.getElementById(elementId);
-            if (parseInt(inputElement.value) > 1) {
-                inputElement.value = parseInt(inputElement.value) - 1;
-            }
-        }
+    function toggleOptions(checkboxId) {
+        var checkbox = document.getElementById(checkboxId);
+        var options = document.getElementById(checkboxId + "_options");
 
-        function calculateTotal() {
-            let total = 0;
-            const pastaInputs = document.querySelectorAll('input[type="number"]');
-            pastaInputs.forEach(input => {
-                const quantity = parseInt(input.value);
-                const checkbox = document.getElementById(input.getAttribute('data-checkbox'));
-                if (checkbox.checked) {
-                    total += parseInt(checkbox.value) * quantity;
-                }
+        if (checkbox.checked) {
+            options.style.display = "block";
+        } else {
+            options.style.display = "none";
+            // Uncheck size checkboxes when pizza# is unchecked
+            var sizeCheckboxes = options.querySelectorAll('input[type="checkbox"]');
+            sizeCheckboxes.forEach(sizeCheckbox => {
+                sizeCheckbox.checked = false;
             });
-            alert('Total price of Pasta: $' + total);
         }
+    }
+
+    function updateQuantity(checkboxId, action) {
+        const checkbox = document.getElementById(checkboxId);
+        let quantity = parseInt(checkbox.dataset.quantity || 1); // Default quantity to 1 if not set
+        if (action === 'add') {
+            quantity++;
+        } else if (action === 'subtract' && quantity > 1) {
+            quantity--;
+        }
+        checkbox.dataset.quantity = quantity;
+        document.getElementById(checkboxId + '-quantity').textContent = quantity;
+    }
     </script>
     <style>
 		.title{
@@ -50,40 +64,18 @@
 			  display: inline-block;
 			}
 
-		.pasta-label {
-		  position: absolute;
-		  top: 50%;
-		  left: 200%;
-		  transform: translate(-50%, -50%);
-		  white-space: nowrap;
-		 
-		}
-		.pasta-2 {
-		  position: absolute;
-		  top: 60%;
-		  left: 190%;
-		  transform: translate(-50%, -50%);
-		  white-space: nowrap;
-		 
-		}
-			
-		.pasta-3 {
-		  position: absolute;
-		  top: 55%;
-		  left: 200%;
-		  transform: translate(-50%, -50%);
-		  white-space: nowrap;
-		 
-		}
-		
-		.pasta-4 {
-		  position: absolute;
-		  top: 55%;
-		  left: 210%;
-		  transform: translate(-50%, -50%);
-		  white-space: nowrap;
-		 
-		}
+		table {
+        margin: 0 auto; /* Center the table */
+        font-family: font1; /* Apply font1 to the table */
+    }
+
+     td {
+            padding: 50px; /* Add some padding for spacing, change to seperate more */
+			font-family: Georgia;
+			font-wieght:bold;
+			font-size:40px;
+			color:white;
+        }
 		</style>
 	</head>
 <body bgcolor="#b02525">
@@ -93,60 +85,46 @@
 <h1 class="title" align=center> <br>
     The Pasta Menu:
 <br> <br></h1>
-<table class="font1">
-    <tr>
-        <td>
-            <div class="image-container">
-                <img src="lasagna.jpg" alt="Product1" width="550" height="500">
-                <label for="pasta1" class="pasta-label">The Lasagna ($10): This pasta is made by layering wide, <br> flat noodles with cheese, sauce, and meats, <br> then baking it until it's golden and bubbly.</label>
-                <input type="checkbox" name="pasta1" id="pasta1" value="10"> <br>
-                <button onclick="decreaseQuantity('quantity1')">-</button>
-                <input type="number" id="quantity1" value="1" data-checkbox="pasta1">
-                <button onclick="increaseQuantity('quantity1')">+</button>
-                <br><br>
-            </div>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <div class="image-container">
-                <img src="spaghetti.jpg" alt="Product2" width="550" height="500">
-                <label for="pasta2" class="pasta-label">The Spaghetti ($8): It is a long, thin pasta <br> in a string like form served <br> with marinara sauce, and often with a meatball.</label>
-                <input type="checkbox" name="pasta2" id="pasta2" value="8"> <br>
-                <button onclick="decreaseQuantity('quantity2')">-</button>
-                <input type="number" id="quantity2" value="1" data-checkbox="pasta2">
-                <button onclick="increaseQuantity('quantity2')">+</button>
-                <br><br>
-            </div>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <div class="image-container">
-                <img src="fettuccine-alfredo.jpg" alt="Product3" width="550" height="500">
-                <label for="pasta3" class="pasta-label">The Fettuccine Alfredo ($15): This is a creamy pasta dish made <br> with flat ribbon-like noodles tossed in a <br> rich sauce of butter, heavy cream, and Parmesan cheese.</label>
-                <input type="checkbox" name="pasta3" id="pasta3" value="15"> <br>
-                <button onclick="decreaseQuantity('quantity3')">-</button>
-                <input type="number" id="quantity3" value="1" data-checkbox="pasta3">
-                <button onclick="increaseQuantity('quantity3')">+</button>
-                <br><br>
-            </div>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <div class="image-container">
-                <img src="ravioli.jpg" alt="Product4" width="550" height="500">
-                <label for="pasta4" class="pasta-label">The Ravioli ($12): They are small, square parcels of pasta dough <br> filled with various fillings of cheese and meat <br> served with marinara sauce.</label>
-                <input type="checkbox" name="pasta4" id="pasta4" value="12"> <br>
-                <button onclick="decreaseQuantity('quantity4')">-</button>
-                <input type="number" id="quantity4" value="1" data-checkbox="pasta4">
-                <button onclick="increaseQuantity('quantity4')">+</button>
-                <br><br>
-            </div>
-        </td>
-    </tr>
-</table>
+
+
+
+	<?php
+$count = 1;
+$sql_product = "SELECT * FROM pasta_tab";
+$result_product = $connect->query($sql_product);
+?>
+
+<center>
+    <table font-family: font1>
+        <tr>
+            <?php while ($row_product = $result_product->fetch_assoc()) { ?>
+                <td>
+                    <?php echo "<img src='" . $row_product["image"] . "' width='550' height='550' /><br>"; ?>
+                    <div>
+                        <?php echo $row_product["name"]; ?>
+						<?php echo $row_product["price"]; ?>
+                        <input type='checkbox' name='pizza<?php echo $count; ?>' id='pizza<?php echo $count; ?>' value='<?php echo $row_product["dollar"]; ?>' onclick="toggleOptions('pizza<?php echo $count; ?>')" />
+                        <button class='ButtonN' onclick="updateQuantity('pizza<?php echo $count; ?>', 'add')">`+`</button>
+                        <button class='ButtonN' onclick="updateQuantity('pizza<?php echo $count; ?>', 'subtract')">`-`</button>
+                        <span id='pizza<?php echo $count; ?>-quantity'>0</span><br>
+                        
+                    </div>
+                </td>
+                <?php
+                if ($count >= 2) {
+                    echo "</tr><br><tr>";
+                    $count = 1;
+                } else {
+                    $count++;
+                }
+            }
+            ?>
+        </tr>
+    </table>
+</center>
+
+
+
 <button onclick="calculateTotal()">Calculate Total Price</button>
 </body>
 </html>
