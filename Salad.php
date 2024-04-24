@@ -1,33 +1,47 @@
 
-<!DOCTYPE html>
+!DOCTYPE html>
 <html>
 <head> 
     <title>Salads Menu: </title>
+	<?php include ("connect.php"); ?>
     <script>
 
-    function increaseQuantity(elementId) {
-        let inputElement = document.getElementById(elementId);
-        inputElement.value = parseInt(inputElement.value) + 1;
+                function calculateTotal() {
+        let total = 0;
+        const checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+        checkboxes.forEach(checkbox => {
+            const quantity = parseInt(checkbox.dataset.quantity || 1); // Default quantity to 1 if not set
+            total += parseInt(checkbox.value) * quantity;
+        });
+        alert('Total price: $' + total);
     }
 
-    function decreaseQuantity(elementId) {
-        let inputElement = document.getElementById(elementId);
-        if (parseInt(inputElement.value) > 1) {
-            inputElement.value = parseInt(inputElement.value) - 1;
+    function toggleOptions(checkboxId) {
+        var checkbox = document.getElementById(checkboxId);
+        var options = document.getElementById(checkboxId + "_options");
+
+        if (checkbox.checked) {
+            options.style.display = "block";
+        } else {
+            options.style.display = "none";
+            // Uncheck size checkboxes when pizza# is unchecked
+            var sizeCheckboxes = options.querySelectorAll('input[type="checkbox"]');
+            sizeCheckboxes.forEach(sizeCheckbox => {
+                sizeCheckbox.checked = false;
+            });
         }
     }
 
-    function calculateTotal() {
-        let total = 0;
-        const saladInputs = document.querySelectorAll('input[type="number"]');
-        saladInputs.forEach(input => {
-            const quantity = parseInt(input.value);
-            const checkbox = document.getElementById(input.getAttribute('data-checkbox'));
-            if (checkbox.checked) {
-                total += parseInt(checkbox.value) * quantity;
-            }
-        });
-        alert('Total price of Salad(s): $' + total);
+    function updateQuantity(checkboxId, action) {
+        const checkbox = document.getElementById(checkboxId);
+        let quantity = parseInt(checkbox.dataset.quantity || 1); // Default quantity to 1 if not set
+        if (action === 'add') {
+            quantity++;
+        } else if (action === 'subtract' && quantity > 1) {
+            quantity--;
+        }
+        checkbox.dataset.quantity = quantity;
+        document.getElementById(checkboxId + '-quantity').textContent = quantity;
     }
     </script>
     
@@ -54,40 +68,17 @@
 			  display: inline-block;
 			}
 
-		.salad-1 {
-		  position: absolute;
-		  top: 50%;
-		  left: 200%;
-		  transform: translate(-50%, -50%);
-		  white-space: nowrap;
-		 
-		}
-		.salad-2 {
-		  position: absolute;
-		  top: 45%;
-		  left: 210%;
-		  transform: translate(-50%, -50%);
-		  white-space: nowrap;
-		 
-		}
-			
-		.salad-3 {
-		  position: absolute;
-		  top: 45%;
-		  left: 190%;
-		  transform: translate(-50%, -50%);
-		  white-space: nowrap;
-		 
-		}
-		
-		.salad-4 {
-		  position: absolute;
-		  top: 50%;
-		  left: 190%;
-		  transform: translate(-50%, -50%);
-		  white-space: nowrap;
-		 
-		}
+		table {
+            margin: 0 auto; /* Center the table */
+
+        }
+
+     td {
+            padding: 50px; /* Add some padding for spacing, change to seperate more */
+			font-family: Georgia;
+			font-wieght:bold;
+			font-size:35px;
+        }
 		</style>
 	</head>
 
@@ -101,60 +92,45 @@
     <br> The Salad Menu: <br><br> 
 </h1>
 
-<table class="font1">
-<tr>
-    <td>
-        <div class="image-container">
-            <img src="caesar.jpg" alt="Product1" width="550" height="500">
-            <label for="salad1" class="salad-1">The Caesar Salad ($8): A classic salad composed of <br> romaine lettuce, croutons, grated parmesan cheese, and <br> a some caesar dressing.</label>
-            <input type="checkbox" name="salad1" id="salad1" value="8"> <br>
-            <button onclick="decreaseQuantity('quantity1')">-</button>
-            <input type="number" id="quantity1" value="1" data-checkbox="salad1">
-            <button onclick="increaseQuantity('quantity1')">+</button>
-            <br><br>
-        </div>
-    </td>
-</tr>
-<tr>
-    <td>
-        <div class="image-container">
-            <img src="chickenss.jpg" alt="Product2" width="550" height="500">
-            <label for="salad2" class="salad-2">The Chicken Salad ($15): A salad featuring cooked chicken mixed <br> with mayonnaise, celery, and various seasonings,and <br> served chilled on a bed of lettuce.</label>
-            <input type="checkbox" name="salad2" id="salad2" value="15"> <br>
-            <button onclick="decreaseQuantity('quantity2')">-</button>
-            <input type="number" id="quantity2" value="1" data-checkbox="salad2">
-            <button onclick="increaseQuantity('quantity2')">+</button>
-            <br><br>
-        </div>
-    </td>
-</tr>
-<tr>
-    <td>
-        <div class="image-container">
-            <img src="waldorf.jpg" alt="Product3" width="550" height="500">
-            <label for="salad3" class="salad-3">The Waldorf Salad ($12): A refreshing salad consisting <br> of diced apples, celery,and walnuts dressed <br> in a mayonnaise-based dressing.</label>
-            <input type="checkbox" name="salad3" id="salad3" value="12"> <br>
-            <button onclick="decreaseQuantity('quantity3')">-</button>
-            <input type="number" id="quantity3" value="1" data-checkbox="salad3">
-            <button onclick="increaseQuantity('quantity3')">+</button>
-            <br><br>
-        </div>
-    </td>
-</tr>
-<tr>
-    <td>
-        <div class="image-container">
-            <img src="potato.jpg" alt="Product4" width="550" height="500">
-            <label for="salad4" class="salad-4">The Potato Salad ($10): A salad made with boiled <br> potatoes, dressed with some mayonnaise, and mixed <br> with ingredients like onions, celery, and herbs.</label>
-            <input type="checkbox" name="salad4" id="salad4" value="10"> <br>
-            <button onclick="decreaseQuantity('quantity4')">-</button>
-            <input type="number" id="quantity4" value="1" data-checkbox="salad4">
-            <button onclick="increaseQuantity('quantity4')">+</button>
-            <br><br>
-        </div>
-    </td>
-</tr>
-</table>
+
+	<?php
+$count = 1;
+$sql_product = "SELECT * FROM salad_tab";
+$result_product = $connect->query($sql_product);
+?>
+
+<center>
+    <table font-family: font1>
+        <tr>
+            <?php while ($row_product = $result_product->fetch_assoc()) { ?>
+                <td>
+                    <?php echo "<img src='" . $row_product["image"] . "' width='550' height='550' /><br>"; ?>
+                    <div>
+                        <?php echo $row_product["name"]; ?>
+						<?php echo $row_product["price"]; ?>
+                        <input type='checkbox' name='pizza<?php echo $count; ?>' id='pizza<?php echo $count; ?>' value='<?php echo $row_product["dollar"]; ?>' onclick="toggleOptions('pizza<?php echo $count; ?>')" />
+                        <button class='ButtonN' onclick="updateQuantity('pizza<?php echo $count; ?>', 'add')">`+`</button>
+                        <button class='ButtonN' onclick="updateQuantity('pizza<?php echo $count; ?>', 'subtract')">`-`</button>
+                        <span id='pizza<?php echo $count; ?>-quantity'>0</span><br>
+                        
+                    </div>
+                </td>
+                <?php
+                if ($count >= 2) {
+                    echo "</tr><br><tr>";
+                    $count = 1;
+                } else {
+                    $count++;
+                }
+            }
+            ?>
+        </tr>
+    </table>
+</center>
+
+
+
+
 
 <button onclick="calculateTotal()">Calculate Total Price</button> <!--need to send to cart-->
 
@@ -168,4 +144,3 @@
 
 
 -->
-
