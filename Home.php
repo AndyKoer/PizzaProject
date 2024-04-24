@@ -3,9 +3,9 @@
 <html>
 	<head>
 	
-	<title> Main Menu </title>
+	<title>Main Menu </title>
 	
-	
+	<?php include ("connect.php"); ?>
 	
 	<style>
 	
@@ -94,6 +94,7 @@
 		}
 	table {
             margin: 0 auto; /* Center the table */
+
         }
 
      td {
@@ -163,8 +164,8 @@
 	</div>
 	
 	
-	<button class="button1" onclick="location.href='Salad.html'"> Salad Menu </button>
-	<button class="button2" onclick="location.href='Pasta.html'"> Pasta Menu </button>
+	<button class="button1" onclick="location.href='salad.php'"> Salad Menu </button>
+	<button class="button2" onclick="location.href='pasta.php'"> Pasta Menu </button>
 	<br><br>
 	<div class="text2"
 	<p> These will go the Salad and Pasta menu, but our selection of pizza is right below. </P>
@@ -179,293 +180,160 @@
 	
 	</center>
 	
-	<!--get pizzas, maybe lab3 to tell about pizza-->
-	 <center>
-        <table>
-			<tr>
-            <td>
-                <img src="pepperoni.jpg" width="250" height="250"> <br>
-				
-                <p> Pepperoni Pizza($8) 
-                <input type="checkbox" name="pizza1" id="pizza1" value="8" onclick="toggleOptions('pizza1') " /> 
-				<button class="ButtonN" onclick="updateQuantity('pizza1', 'add')">`+`</button> 
-				<button class="ButtonN"onclick="updateQuantity('pizza1', 'subtract')">`-`</button>
-				<span id="pizza1-quantity">0</span> </p>
-				
-            <div id="pizza1_options" style="display: none;">
-                    <label><input type="checkbox" name="size_small" value="0" onclick="updateQuantity('pizza1', 1)"> Small</label>
-                    <label><input type="checkbox" name="size_medium" value="2" onclick="updateQuantity('pizza1', 1)"> Medium</label>
-                    <label><input type="checkbox" name="size_large" value="5" onclick="updateQuantity('pizza1', 1)"> Large</label>
-             </div>
-            </td>
-			
-			
-			
-            <td>
-                <img src="cheese.jpg" width="250" height="250">
-                <p> Cheese Pizza($6) 
-                <input type="checkbox" name="pizza2" id="pizza2" value="6" onclick="toggleOptions('pizza2')" /> 
-				<button class="ButtonN" onclick="updateQuantity('pizza2', 'add')">`+`</button> 
-				<button class="ButtonN"onclick="updateQuantity('pizza2', 'subtract')">`-`</button>
-				<span id="pizza2-quantity">0</span> </p>
-				
-                <div id="pizza2_options" style="display: none;">
-                    <label><input type="checkbox" name="size_small" value="0" onclick="updateQuantity('pizza2', 1)"> Small</label>
-                    <label><input type="checkbox" name="size_medium" value="2" onclick="updateQuantity('pizza2', 1)"> Medium</label>
-                    <label><input type="checkbox" name="size_large" value="5" onclick="updateQuantity('pizza2', 1)"> Large</label>
-                </div>
-            </td>
-            <td>
-                <img src="sausage.jpg" width="250" height="250">
-                <p> Sausage Pizza($8) 
-                <input type="checkbox" name="pizza3" id="pizza3" value="8" onclick="toggleOptions('pizza3')" /> 
-				<button class="ButtonN" onclick="updateQuantity('pizza3', 'add')">`+`</button> 
-				<button class="ButtonN"onclick="updateQuantity('pizza3', 'subtract')">`-`</button>
-				<span id="pizza3-quantity">0</span> </p>
-				
-                <div id="pizza3_options" style="display: none;">
-                    <label><input type="checkbox" name="size_small" value="0" onclick="updateQuantity('pizza3', 1)"> Small</label>
-                    <label><input type="checkbox" name="size_medium" value="2" onclick="updateQuantity('pizza3', 1)"> Medium</label>
-                    <label><input type="checkbox" name="size_large" value="5" onclick="updateQuantity('pizza3', 1)"> Large</label>
-                </div>
-            </td>
-			</tr>
-			
-			
-			
-			
-			
-            <tr>
+	
+	<?php
+$count = 1;
+$sql_product = "SELECT * FROM pizza_tab";
+$result_product = $connect->query($sql_product);
+?>
+
+<center>
+    <table>
+        <tr>
+            <?php while ($row_product = $result_product->fetch_assoc()) { ?>
                 <td>
-					<img src="HAWAIIAN.jpg" width="250" height="250"> <br>
-					
-					<p> Hawaiian Pizza($12) 
-					<input type="checkbox" name="pizza4" id="pizza4" value="12" onclick="toggleOptions('pizza4') " /> 
-					<button class="ButtonN" onclick="updateQuantity('pizza4', 'add')">`+`</button> 
-					<button class="ButtonN"onclick="updateQuantity('pizza4', 'subtract')">`-`</button>
-					<span id="pizza4-quantity">0</span> </p>
-					
-				<div id="pizza4_options" style="display: none;">
-						<label><input type="checkbox" name="size_small" value="0" onclick="updateQuantity('pizza4', 1)"> Small</label>
-						<label><input type="checkbox" name="size_medium" value="2" onclick="updateQuantity('pizza4', 1)"> Medium</label>
-						<label><input type="checkbox" name="size_large" value="5" onclick="updateQuantity('pizza4', 1)"> Large</label>
-				 </div>
-				</td>
-                <td>
-					<img src="Buffalo.jpg" width="250" height="250"> <br>
-					
-					<p> Buffalo Pizza($11) 
-					<input type="checkbox" name="pizza5" id="pizza5" value="11" onclick="toggleOptions('pizza5') " /> 
-					<button class="ButtonN" onclick="updateQuantity('pizza5', 'add')">`+`</button> 
-					<button class="ButtonN"onclick="updateQuantity('pizza5', 'subtract')">`-`</button>
-					<span id="pizza5-quantity">0</span> </p>
-					
-				<div id="pizza5_options" style="display: none;">
-						<label><input type="checkbox" name="size_small" value="0" onclick="updateQuantity('pizza5', 1)"> Small</label>
-						<label><input type="checkbox" name="size_medium" value="2" onclick="updateQuantity('pizza5', 1)"> Medium</label>
-						<label><input type="checkbox" name="size_large" value="5" onclick="updateQuantity('pizza5', 1)"> Large</label>
-				 </div>
-				</td>
-                <td>
-					<img src="mushroom.jpg" width="250" height="250"> <br>
-					
-					<p> Mushroom Pizza($8) 
-					<input type="checkbox" name="pizza6" id="pizza6" value="8" onclick="toggleOptions('pizza6') " /> 
-					<button class="ButtonN" onclick="updateQuantity('pizza6', 'add')">`+`</button> 
-					<button class="ButtonN"onclick="updateQuantity('pizza6', 'subtract')">`-`</button>
-					<span id="pizza6-quantity">0</span> </p>
-					
-				<div id="pizza6_options" style="display: none;">
-						<label><input type="checkbox" name="size_small" value="0" onclick="updateQuantity('pizza6', 1)"> Small</label>
-						<label><input type="checkbox" name="size_medium" value="2" onclick="updateQuantity('pizza6', 1)"> Medium</label>
-						<label><input type="checkbox" name="size_large" value="5" onclick="updateQuantity('pizza6', 1)"> Large</label>
-				 </div>
-				</td>
-            </tr>
-			
-			
-			
-            <tr>
-                <td>
-					<img src="bacon.jpg" width="250" height="250"> <br>
-					
-					<p> Bacon Pizza($10) 
-					<input type="checkbox" name="pizza7" id="pizza7" value="10" onclick="toggleOptions('pizza7') " /> 
-					<button class="ButtonN" onclick="updateQuantity('pizza7', 'add')">`+`</button> 
-					<button class="ButtonN"onclick="updateQuantity('pizza7', 'subtract')">`-`</button>
-					<span id="pizza7-quantity">0</span> </p>
-					
-				<div id="pizza7_options" style="display: none;">
-						<label><input type="checkbox" name="size_small" value="0" onclick="updateQuantity('pizza7', 1)"> Small</label>
-						<label><input type="checkbox" name="size_medium" value="2" onclick="updateQuantity('pizza7', 1)"> Medium</label>
-						<label><input type="checkbox" name="size_large" value="5" onclick="updateQuantity('pizza7', 1)"> Large</label>
-				 </div>
-				</td>
-                <td>
-					<img src="onion.jpg" width="250" height="250"> <br>
-					
-					<p> Onion Pizza($8) 
-					<input type="checkbox" name="pizza8" id="pizza8" value="8" onclick="toggleOptions('pizza8') " /> 
-					<button class="ButtonN" onclick="updateQuantity('pizza6', 'add')">`+`</button> 
-					<button class="ButtonN"onclick="updateQuantity('pizza6', 'subtract')">`-`</button>
-					<span id="pizza8-quantity">0</span> </p>
-					
-				<div id="pizza8_options" style="display: none;">
-						<label><input type="checkbox" name="size_small" value="0" onclick="updateQuantity('pizza8', 1)"> Small</label>
-						<label><input type="checkbox" name="size_medium" value="2" onclick="updateQuantity('pizza8', 1)"> Medium</label>
-						<label><input type="checkbox" name="size_large" value="5" onclick="updateQuantity('pizza8', 1)"> Large</label>
-				 </div>
-				</td>
-                <td>
-					<img src="anchovies.jpg" width="250" height="250"> <br>
-					
-					<p> Anchovies Pizza($10) 
-					<input type="checkbox" name="pizza9" id="pizza9" value="10" onclick="toggleOptions('pizza9') " /> 
-					<button class="ButtonN" onclick="updateQuantity('pizza9', 'add')">`+`</button> 
-					<button class="ButtonN"onclick="updateQuantity('pizza9', 'subtract')">`-`</button>
-					<span id="pizza9-quantity">0</span> </p>
-					
-				<div id="pizza9_options" style="display: none;">
-						<label><input type="checkbox" name="size_small" value="0" onclick="updateQuantity('pizza9', 1)"> Small</label>
-						<label><input type="checkbox" name="size_medium" value="2" onclick="updateQuantity('pizza9', 1)"> Medium</label>
-						<label><input type="checkbox" name="size_large" value="5" onclick="updateQuantity('pizza9', 1)"> Large</label>
-				 </div>
-				</td>
-            </tr>
-			
-			
-			
-			<tr>
-                <td>
-					<img src="Chicken.jpg" width="250" height="250"> <br>
-					
-					<p> Chicken Pizza($10) 
-					<input type="checkbox" name="pizza10" id="pizza10" value="10" onclick="toggleOptions('pizza10') " /> 
-					<button class="ButtonN" onclick="updateQuantity('pizza10', 'add')">`+`</button> 
-					<button class="ButtonN"onclick="updateQuantity('pizza10', 'subtract')">`-`</button>
-					<span id="pizza10-quantity">0</span> </p>
-					
-				<div id="pizza10_options" style="display: none;">
-						<label><input type="checkbox" name="size_small" value="0" onclick="updateQuantity('pizza10', 1)"> Small</label>
-						<label><input type="checkbox" name="size_medium" value="2" onclick="updateQuantity('pizza10', 1)"> Medium</label>
-						<label><input type="checkbox" name="size_large" value="5" onclick="updateQuantity('pizza10', 1)"> Large</label>
-				 </div>
-				</td>
-                <td>
-					<img src="jalapeno.jpg" width="250" height="250"> <br>
-					
-					<p> Jalapeno Pizza($12) 
-					<input type="checkbox" name="pizza11" id="pizza11" value="12" onclick="toggleOptions('pizza11') " /> 
-					<button class="ButtonN" onclick="updateQuantity('pizza11', 'add')">`+`</button> 
-					<button class="ButtonN"onclick="updateQuantity('pizza11', 'subtract')">`-`</button>
-					<span id="pizza11-quantity">0</span> </p>
-					
-				<div id="pizza11_options" style="display: none;">
-						<label><input type="checkbox" name="size_small" value="0" onclick="updateQuantity('pizza11', 1)"> Small</label>
-						<label><input type="checkbox" name="size_medium" value="2" onclick="updateQuantity('pizza11', 1)"> Medium</label>
-						<label><input type="checkbox" name="size_large" value="5" onclick="updateQuantity('pizza11', 1)"> Large</label>
-				 </div>
-				</td>
-                <td>
-					<img src="pineapple.jpg" width="250" height="250"> <br>
-					
-					<p> Pineapple Pizza($10) 
-					<input type="checkbox" name="pizza12" id="pizza12" value="10" onclick="toggleOptions('pizza12') " /> 
-					<button class="ButtonN" onclick="updateQuantity('pizza12', 'add')">`+`</button> 
-					<button class="ButtonN"onclick="updateQuantity('pizza12', 'subtract')">`-`</button>
-					<span id="pizza12-quantity">0</span> </p>
-					
-				<div id="pizza12_options" style="display: none;">
-						<label><input type="checkbox" name="size_small" value="0" onclick="updateQuantity('pizza12', 1)"> Small</label>
-						<label><input type="checkbox" name="size_medium" value="2" onclick="updateQuantity('pizza12', 1)"> Medium</label>
-						<label><input type="checkbox" name="size_large" value="5" onclick="updateQuantity('pizza12', 1)"> Large</label>
-				 </div>
-				</td>
-            </tr>
-        </table>
+                    <?php echo "<img src='" . $row_product["image"] . "' width='250' height='250' /><br>"; ?>
+                    <div>
+                        <?php echo $row_product["name"]; ?>
+                        <?php echo $row_product["price"]; ?>
+                        <input type='checkbox' name='pizza<?php echo $count; ?>' id='pizza<?php echo $count; ?>' value='<?php echo $row_product["dollar"]; ?>' onclick="toggleOptions('pizza<?php echo $count; ?>')" />
+                        <button class='ButtonN' onclick="updateQuantity('pizza<?php echo $count; ?>', 'add')">`+`</button>
+                        <button class='ButtonN' onclick="updateQuantity('pizza<?php echo $count; ?>', 'subtract')">`-`</button>
+                        <span id='pizza<?php echo $count; ?>-quantity'>0</span><br>
+                        <div id='pizza<?php echo $count; ?>_options' style='display: none;'>
+                            <label><input type='checkbox' name='size_small' value='0' onclick="updateQuantity('pizza<?php echo $count; ?>', 1)"> Small</label>
+                            <label><input type='checkbox' name='size_medium' value='2' onclick="updateQuantity('pizza<?php echo $count; ?>', 1)"> Medium</label>
+                            <label><input type='checkbox' name='size_large' value='5' onclick="updateQuantity('pizza<?php echo $count; ?>', 1)"> Large</label>
+                        </div>
+                    </div>
+                </td>
+                <?php
+                if ($count >= 3) {
+                    echo "</tr><tr>";
+                    $count = 1;
+                } else {
+                    $count++;
+                }
+            }
+            ?>
+        </tr>
+    </table>
+</center>
+	
+	
+
+
+<center>
+	
 		<button onclick="calculateTotal()">Calculate Total</button>
     </center>
 		<div class= "text1">
 		<p> <br><br> <b> Freddy's Desserts! </b> </P>
 		</div>
-		<table>
-			<tr>
-				<td><img src="giant-cookie.jpg" width="250" height="250"> <br>
-						<p> Mighty Freddy Cookie ($8)
-						<input type="checkbox" name="pizza100" id="pizza100" value="8"  /> 
-						<button class="ButtonN" onclick="updateQuantity('pizza100', 'add')">`+`</button> 
-						<button class="ButtonN"onclick="updateQuantity('pizza100', 'subtract')">`-`</button>
-						<span id="pizza100-quantity">0</span> </p>
-						</p></td>
-				<td><img src="cake.jpg" width="250" height="250"> <br>
-						<p> Freddy Gooey Cakey ($14) 
-						<input type="checkbox" name="pizza101" id="pizza101" value="14"  />
-						<button class="ButtonN" onclick="updateQuantity('pizza101', 'add')">`+`</button> 
-						<button class="ButtonN"onclick="updateQuantity('pizza101', 'subtract')">`-`</button>
-						<span id="pizza101-quantity">0</span> </p>
-			</tr>
+
+	
+	<?php
+$count = 1;
+$sql_product = "SELECT * FROM dessert_tab";
+$result_product = $connect->query($sql_product);
+?>
+
+<center>
+    <table>
+        <tr>
+            <?php while ($row_product = $result_product->fetch_assoc()) { ?>
+                <td>
+                    <?php echo "<img src='" . $row_product["image"] . "' width='250' height='250' /><br>"; ?>
+                    <div>
+                        <?php echo $row_product["name"]; ?>
+                        <?php echo $row_product["price"]; ?>
+                        <input type='checkbox' name='pizza<?php echo $count; ?>' id='pizza<?php echo $count; ?>' value='<?php echo $row_product["dollar"]; ?>' onclick="toggleOptions('pizza<?php echo $count; ?>')" />
+                        <button class='ButtonN' onclick="updateQuantity('pizza<?php echo $count; ?>', 'add')">`+`</button>
+                        <button class='ButtonN' onclick="updateQuantity('pizza<?php echo $count; ?>', 'subtract')">`-`</button>
+                        <span id='pizza<?php echo $count; ?>-quantity'>0</span><br>
+                        <div id='pizza<?php echo $count; ?>_options' style='display: none;'>
+                            <label><input type='checkbox' name='size_small' value='0' onclick="updateQuantity('pizza<?php echo $count; ?>', 1)"> Small</label>
+                            <label><input type='checkbox' name='size_medium' value='2' onclick="updateQuantity('pizza<?php echo $count; ?>', 1)"> Medium</label>
+                            <label><input type='checkbox' name='size_large' value='5' onclick="updateQuantity('pizza<?php echo $count; ?>', 1)"> Large</label>
+                        </div>
+                    </div>
+                </td>
+                <?php
+                if ($count >= 3) {
+                    echo "</tr><tr>";
+                    $count = 1;
+                } else {
+                    $count++;
+                }
+            }
+            ?>
+        </tr>
+    </table>
+</center>
 	
 	
-	</table>
+	
+	
+	
+	
+	
+	
+	
+
+		
 	
 	<div class= "text1">
-	<p> <br> Freddy's Soothing Drinks! ($3 Each)</P>
+	<p> <br> Freddy's Soothing Drinks! ($5 Each)</P>
 	</div>
-	<table>
-		<tr>
-			
-            <td><img src="drinkPepper.jpg" width="150" height="150"> <br>
-                    <p> Dr. Pepper
-                    <input type="checkbox" name="pizza102" id="pizza102" value="3"  /> 
-					<button class="ButtonN" onclick="updateQuantity('pizza102', 'add')">`+`</button> 
-					<button class="ButtonN"onclick="updateQuantity('pizza102', 'subtract')">`-`</button>
-					<span id="pizza102-quantity">0</span> </p>
-					</p></td>
-            <td><img src="drinkPepsi.jpg" width="150" height="150"> <br>
-                    <p> Pepsi 
-                    <input type="checkbox" name="pizza103" id="pizza103" value="3"  /> 
-					<button class="ButtonN" onclick="updateQuantity('pizza103', 'add')">`+`</button> 
-					<button class="ButtonN"onclick="updateQuantity('pizza103', 'subtract')">`-`</button>
-					<span id="pizza103-quantity">0</span> </p>
-					</p></td>
-			<td><img src="drinkMUG.jpg" width="150" height="150"> <br>
-                    <p> MUG 
-                    <input type="checkbox" name="pizza104" id="pizza104" value="3" /> 
-					<button class="ButtonN" onclick="updateQuantity('pizza104', 'add')">`+`</button> 
-					<button class="ButtonN"onclick="updateQuantity('pizza104', 'subtract')">`-`</button>
-					<span id="pizza104-quantity">0</span> </p>
-					</p></td>
-			<td><img src="drinkSprite.jpg" width="150" height="150"> <br>
-                    <p> Sprite 
-                    <input type="checkbox" name="pizza105" id="pizza105" value="3"  />
-					<button class="ButtonN" onclick="updateQuantity('pizza105', 'add')">`+`</button> 
-					<button class="ButtonN"onclick="updateQuantity('pizza105', 'subtract')">`-`</button>
-					<span id="pizza105-quantity">0</span> </p>
-					</p></td>
-			<td><img src="drinkDew.jpg" width="150" height="150"> <br>
-                    <p> Mtn. Dew
-                    <input type="checkbox" name="pizza106" id="pizza106" value="3"  /> 
-					<button class="ButtonN" onclick="updateQuantity('pizza106', 'add')">`+`</button> 
-					<button class="ButtonN"onclick="updateQuantity('pizza106', 'subtract')">`-`</button>
-					<span id="pizza106-quantity">0</span> </p>
-					</p></td>
+	
+	<?php
+$count = 1;
+$sql_product = "SELECT * FROM drinks_tab";
+$result_product = $connect->query($sql_product);
+?>
+
+<center>
+    <table>
+        <tr>
+            <?php while ($row_product = $result_product->fetch_assoc()) { ?>
+                <td>
+                    <?php echo "<img src='" . $row_product["image"] . "' width='150' height='150' /><br>"; ?>
+                    <div>
+                        <?php echo $row_product["name"]; ?>
+                        <input type='checkbox' name='pizza<?php echo $count; ?>' id='pizza<?php echo $count; ?>' value='<?php echo $row_product["dollar"]; ?>' onclick="toggleOptions('pizza<?php echo $count; ?>')" />
+                        <button class='ButtonN' onclick="updateQuantity('pizza<?php echo $count; ?>', 'add')">`+`</button>
+                        <button class='ButtonN' onclick="updateQuantity('pizza<?php echo $count; ?>', 'subtract')">`-`</button>
+                        <span id='pizza<?php echo $count; ?>-quantity'>0</span><br>
+                        
+                    </div>
+                </td>
+                <?php
+                if ($count >= 5) {
+                    echo "</tr><tr>";
+                    $count = 1;
+                } else {
+                    $count++;
+                }
+            }
+            ?>
         </tr>
+    </table>
+</center>
 	
 	
-	</table>
 	
 	<center>
 	<div class="text1"
 	<p> <br><br> You can also make you own pizza! </P>
 	</div>
 	
-	<button class="button3" onclick="location.href='MakeOwn.html'"> Make Your Own Pizza </button> <!--Finish-->
+	<button class="button3" onclick="location.href='MakeOwn.php'"> Make Your Own Pizza </button> <!--Finish-->
 	
 	<div class="text1"
 	<p> <br><br> When you have finished, you can check out here! </P>
 	</div>
 	
-	<button class="button4" onclick="location.href='LoginSignup.html'"> Checkout </button> <!--Finish-->
+	<button class="button4" onclick="location.href='Checkout.php'"> Checkout </button> <!--Finish-->
 	</center>
 	
 	<br>
