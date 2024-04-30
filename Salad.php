@@ -94,6 +94,16 @@
 			font-wieght:bold;
 			font-size:35px;
         }
+	.button1 
+	{
+			width: 20%;
+			padding: 20px 100px;
+			color: cyan;font-size: 24px;
+			font-weight: bold;
+			border: none;
+			border-radius: 50px;
+			background-color:blue;
+	}
 		</style>
 	</head>
 
@@ -146,16 +156,9 @@
 
 
 
-
-<button onclick="calculateTotal()">Add to Cart</button> <!--need to send to cart-->
+<center>
+<button class="button1" onclick="calculateTotal()">Add to Cart</button> <!--need to send to cart-->
+</center>
 
 </body>
 </html>
-
-<!-- Caesar Salad, Chicken Salad, Potato Salad, Waldorf Salad, Bound Salad  
-			background-image: url('salad_background.jpg');
-			background-size: cover; 
-			background-repeat: no-repeat; 
-
-
--->
