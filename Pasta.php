@@ -2,16 +2,32 @@
 <html>
 <head> 
     <title>Pasta Menu</title>
-	<?php include ("connect.php"); ?>
+	<?php 
+	include ("connect.php");
+	session_start();
+	?>
     <script>
-            function calculateTotal() {
+    function calculateTotal() {
         let total = 0;
         const checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
         checkboxes.forEach(checkbox => {
             const quantity = parseInt(checkbox.dataset.quantity || 1); // Default quantity to 1 if not set
             total += parseInt(checkbox.value) * quantity;
         });
-        alert('Total price: $' + total);
+        alert('Total price for pasta(s): $' + total);
+		
+		// Send the total to the server using AJAX
+		const xhr = new XMLHttpRequest();
+		xhr.open('POST', 'update_total.php', true);
+		xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+		xhr.onload = function() {
+			if (xhr.status === 200) {
+				console.log('Total updated successfully');
+			} else {
+				console.error('Error updating total');
+			}
+		};
+		xhr.send('total=' + total);
     }
 
     function toggleOptions(checkboxId) {
@@ -125,6 +141,6 @@ $result_product = $connect->query($sql_product);
 
 
 
-<button onclick="calculateTotal()">Calculate Total Price</button>
+<button onclick="calculateTotal()">Add to Cart</button>
 </body>
 </html>
