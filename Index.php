@@ -17,6 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
 	// If user exists and password is correct, redirect to appropriate page
 	if ($stmt->fetch()) {
 		$_SESSION['username'] = $username;
+		$_SESSION['total'] = 0;
 		header("Location: Home.php");
 	} else {
 		echo "Invalid username or password";
