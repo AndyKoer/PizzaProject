@@ -5,7 +5,10 @@
 	
 	<title>Main Menu </title>
 	
-	<?php include ("connect.php"); ?>
+	<?php 
+	include ("connect.php");
+	session_start();
+	?>
 	
 	<style>
 	
@@ -109,16 +112,29 @@
         
 	</style>
 	
-	    <script>
+	<script>
     function calculateTotal() {
-        let total = 0;
-        const checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
-        checkboxes.forEach(checkbox => {
-            const quantity = parseInt(checkbox.dataset.quantity || 1); // Default quantity to 1 if not set
-            total += parseInt(checkbox.value) * quantity;
-        });
-        alert('Total price: $' + total);
-    }
+		let total = 0;
+		const checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+		checkboxes.forEach(checkbox => {
+			const quantity = parseInt(checkbox.dataset.quantity || 1); // Default quantity to 1 if not set
+			total += parseInt(checkbox.value) * quantity;
+		});
+		alert('Total price: $' + total);
+
+		// Send the total to the server using AJAX
+		const xhr = new XMLHttpRequest();
+		xhr.open('POST', 'update_total.php', true);
+		xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+		xhr.onload = function() {
+			if (xhr.status === 200) {
+				console.log('Total updated successfully');
+			} else {
+				console.error('Error updating total');
+			}
+		};
+		xhr.send('total=' + total);
+	}
 
     function toggleOptions(checkboxId) {
         var checkbox = document.getElementById(checkboxId);
@@ -147,7 +163,7 @@
         checkbox.dataset.quantity = quantity;
         document.getElementById(checkboxId + '-quantity').textContent = quantity;
     }
-</script>
+	</script>
 	
 	
 	</head>
@@ -182,10 +198,10 @@
 	
 	
 	<?php
-$count = 1;
-$sql_product = "SELECT * FROM pizza_tab";
-$result_product = $connect->query($sql_product);
-?>
+	$count = 1;
+	$sql_product = "SELECT * FROM pizza_tab";
+	$result_product = $connect->query($sql_product);
+	?>
 
 <center>
     <table>
@@ -219,24 +235,17 @@ $result_product = $connect->query($sql_product);
         </tr>
     </table>
 </center>
-	
-	
 
-
-<center>
-	
-		<button onclick="calculateTotal()">Calculate Total</button>
-    </center>
+	</center>
 		<div class= "text1">
 		<p> <br><br> <b> Freddy's Desserts! </b> </P>
 		</div>
-
 	
 	<?php
-$count = 1;
-$sql_product = "SELECT * FROM dessert_tab";
-$result_product = $connect->query($sql_product);
-?>
+	$count = 1;
+	$sql_product = "SELECT * FROM dessert_tab";
+	$result_product = $connect->query($sql_product);
+	?>
 
 <center>
     <table>
@@ -270,14 +279,6 @@ $result_product = $connect->query($sql_product);
         </tr>
     </table>
 </center>
-	
-	
-	
-	
-	
-	
-	
-	
 	
 
 		
@@ -287,10 +288,10 @@ $result_product = $connect->query($sql_product);
 	</div>
 	
 	<?php
-$count = 1;
-$sql_product = "SELECT * FROM drinks_tab";
-$result_product = $connect->query($sql_product);
-?>
+	$count = 1;
+	$sql_product = "SELECT * FROM drinks_tab";
+	$result_product = $connect->query($sql_product);
+	?>
 
 <center>
     <table>
@@ -321,10 +322,14 @@ $result_product = $connect->query($sql_product);
 </center>
 	
 	
+	<center>
+	
+		<button onclick="calculateTotal()">Add to Cart</button>
+	
 	
 	<center>
 	<div class="text1"
-	<p> <br><br> You can also make you own pizza! </P>
+	<p> <br><br> You can also make your own pizza! </P>
 	</div>
 	
 	<button class="button3" onclick="location.href='MakeOwn.php'"> Make Your Own Pizza </button> <!--Finish-->
@@ -333,7 +338,7 @@ $result_product = $connect->query($sql_product);
 	<p> <br><br> When you have finished, you can check out here! </P>
 	</div>
 	
-	<button class="button4" onclick="location.href='Checkout.php'"> Checkout </button> <!--Finish-->
+	<button class="button4" onclick="location.href='checkout.php'"> Checkout </button> <!--Finish-->
 	</center>
 	
 	<br>
