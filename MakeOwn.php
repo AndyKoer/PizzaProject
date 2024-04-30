@@ -81,6 +81,16 @@
 		td {
             padding: 45px; /* Add some padding for spacing, change to seperate more */
         }
+		.button1 
+	{
+			width: 20%;
+			padding: 20px 100px;
+			color: black;font-size: 24px;
+			font-weight: bold;
+			border: none;
+			border-radius: 50px;
+			background-color:orange;
+	}
 		</style>
 		</head>
 <body bgcolor="B03F3E">
@@ -147,9 +157,10 @@
 		<td> Jalapenos <input type="checkbox" name="veg" value="1"> </td>
 	</tr>
 </table>
-	
-
-<button onclick="calculateTotal()">Add to Cart</button>
+	<br><br>
+<center>
+<button class="button1" onclick="calculateTotal()">Add to Cart</button>
+</center>
 
 </body>
 
