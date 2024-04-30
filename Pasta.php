@@ -92,6 +92,17 @@
 			font-size:40px;
 			color:white;
         }
+		
+	.button1 
+	{
+			width: 20%;
+			padding: 20px 100px;
+			color: yellow;font-size: 24px;
+			font-weight: bold;
+			border: none;
+			border-radius: 50px;
+			background-color:red;
+	}
 		</style>
 	</head>
 <body bgcolor="#b02525">
@@ -140,7 +151,9 @@ $result_product = $connect->query($sql_product);
 </center>
 
 
+<center>
+<button class="button1"  onclick="calculateTotal()">Add to Cart</button>
+</center>
 
-<button onclick="calculateTotal()">Add to Cart</button>
 </body>
 </html>
