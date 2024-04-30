@@ -149,7 +149,7 @@
 </table>
 	
 
-<button onclick="calculateTotal()">Calculate Total Price</button>
+<button onclick="calculateTotal()">Add to Cart</button>
 
 </body>
 
