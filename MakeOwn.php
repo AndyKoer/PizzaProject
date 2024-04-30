@@ -2,6 +2,10 @@
 <html>
 <head>
     <title>Your Own Pizza</title>
+	<?php 
+	include ("connect.php");
+	session_start();
+	?>
     <script>
         let quantity = 1; // Initialize quantity to 1
 
@@ -24,6 +28,19 @@
                 total += parseInt(checkbox.value) * quantity; // Multiply by my quantity
             });
             alert('Total price for ' + quantity + ' pizza(s): $' + total);
+			
+			// Send the total to the server using AJAX
+			const xhr = new XMLHttpRequest();
+			xhr.open('POST', 'update_total.php', true);
+			xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+			xhr.onload = function() {
+				if (xhr.status === 200) {
+					console.log('Total updated successfully');
+				} else {
+					console.error('Error updating total');
+				}
+			};
+			xhr.send('total=' + total);
         }
     </script>
     <style>
