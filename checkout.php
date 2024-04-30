@@ -24,17 +24,48 @@ if (isset($_POST['empty_cart'])) {
 }
 ?>
 
+<style>
+
+	button {
+		
+		padding: 20px 40px;
+		background-color:#a5a5a5;
+		color: blue;
+		font-size: 24px;
+		font-weight: bold;
+		border: none;
+		border-radius: 5px;
+	}
+	
+	button:hover {
+		background-color: white;
+	}
+
+	.myText
+	{
+		font-family:Georgia;
+		font-size:50px;
+		text-decoration:none;
+		font-style: italic;
+		font-weight:bold;
+		color:blue;
+	}
+
+</style>
+
 <html>
 <head>
     <title>Checkout</title>
 </head>
-<body>
+<body bgcolor="EECB1F" >
     <div id="confirmation" style="text-align: center;">
-        <p><?php echo "{$_SESSION['username']}, do you want to confirm your order? The total is $ {$_SESSION['total']}"; ?></p>
+        <p class="myText"><?php echo "{$_SESSION['username']}, do you want to confirm your order? The total is $ {$_SESSION['total']}"; ?></p>
         <form method="post">
-            <button type="submit" name="empty_cart">Empty Cart and Return</button>
-            <button type="submit" name="confirm_order">Confirm Order</button>
+            <button name="empty_cart">Empty Cart and Return</button>
+            <button name="confirm_order">Confirm Order</button>
         </form>
+		<br><br>
+		<img src="PizzaLogo.jpg" width="400" height="400">
     </div>
 </body>
 </html>
